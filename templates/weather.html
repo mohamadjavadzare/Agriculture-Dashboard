@@ -64,6 +64,7 @@
         <span class="nav-link-text ms-1">پروفایل</span>
       </a>
     </li> -->
+    {% if not request.user.is_authenticated %}
     <li class="nav-item">
       <a class="nav-link text-white " href="{% url 'account:login' %}">
         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -80,6 +81,16 @@
         <span class="nav-link-text ms-1">ثبت نام</span>
       </a>
     </li>
+    {% else %}
+    <li class="nav-item">
+      <a class="nav-link text-white " href="{% url 'account:logout' %}">
+        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+          <i class="material-icons opacity-10">login</i>
+        </div>
+        <span class="nav-link-text ms-1">خروج از حساب</span>
+      </a>
+    </li>
+    {% endif %}
   </ul>
 </div>
 {% endblock %}

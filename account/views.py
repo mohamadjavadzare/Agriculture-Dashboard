@@ -48,14 +48,14 @@ def signup_view(request):
                 password = form.cleaned_data.get('password1')
                 if User.objects.filter(username=username).first():
                     messages.error(request, "Username is taken")
-                    return redirect('/signup')
+                    return redirect('account:signup')
                 if User.objects.filter(email=email).first():
                     messages.error(request, "Email is taken")
-                    return redirect('/signup')
+                    return redirect('account:signup')
                 else:
                     form.save()
                     messages.add_message(request, messages.SUCCESS, "Congrats! Your account created successfully.")
-                    return redirect('/login')
+                    return redirect('account:login')
             else:
                 messages.add_message(request, messages.ERROR, "Make sure you entered valid username, password, and confirm password then try again.")
     else: 

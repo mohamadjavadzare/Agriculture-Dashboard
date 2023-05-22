@@ -35,7 +35,7 @@
         <nav
           class="navbar navbar-expand-lg blur border-radius-xl top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
           <div class="container-fluid ps-2 pe-0">
-            <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="../pages/dashboard.html">
+            <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="{% url 'website:dashboard' %}'">
               <!-- مروارید سبز -->
             </a>
             <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse"
@@ -51,7 +51,7 @@
               <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
                   <a class="nav-link d-flex align-items-center me-2 active" aria-current="page"
-                    href="../pages/dashboard.html">
+                    href="{% url 'website:dashboard' %}">
                     <i class="fa fa-chart-pie opacity-6 text-dark me-1"></i>
                     داشبورد
                   </a>
@@ -63,7 +63,7 @@
                   </a>
                 </li> -->
                 <li class="nav-item">
-                  <a class="nav-link me-2" href="../pages/sign-up.html">
+                  <a class="nav-link me-2" href="{% url 'account:signup' %}">
                     <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
                     ثبت نام
                   </a>
@@ -114,25 +114,26 @@
                 </div>
               </div>
               <div class="card-body">
-                <form role="form" class="text-start">
+                <form role="form" class="text-start" action="{% url 'account:login' %}" method="post">
+                  {% csrf_token %}
                   <div class="input-group input-group-outline my-3">
-                    <label class="form-label">ایمیل</label>
-                    <input type="email" class="form-control">
+                    <input type="text" class="form-control" name="username" placeholder="ایمیل یا نام کاربری" required>
                   </div>
                   <div class="input-group input-group-outline mb-3">
-                    <label class="form-label">رمز عبور</label>
-                    <input type="password" class="form-control">
+                    <input type="password" name="password" class="form-control" placeholder="رمز عبور" required>
                   </div>
                   <!-- <div class="form-check form-switch d-flex align-items-center mb-3">
                     <input class="form-check-input" type="checkbox" id="rememberMe" checked>
                     <label class="form-check-label mb-0 ms-3" for="rememberMe">Remember me</label>
                   </div> -->
                   <div class="text-center">
-                    <button type="button" class="btn bg-gradient-primary w-100 my-4 mb-2">ورود به حساب</button>
+                    <h6>{% include 'messages.html' %}</h6>
+                    <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">ورود به حساب</button>
                   </div>
                   <p class="mt-4 text-sm text-center">
+                    
                     هنوز حساب کاربری ندارید؟
-                    <a href="../pages/sign-up.html" class="text-primary text-gradient font-weight-bold">ثبت نام</a>
+                    <a href="{% url 'account:signup' %}" class="text-primary text-gradient font-weight-bold">ثبت نام</a>
                   </p>
                 </form>
               </div>

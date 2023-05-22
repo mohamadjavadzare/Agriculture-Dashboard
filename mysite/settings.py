@@ -62,6 +62,11 @@ INSTALLED_APPS = [
     'compressor',
 ]
 
+EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
+
+
+CSRF_COOKIE_DOMAIN = None
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
