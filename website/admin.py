@@ -25,3 +25,12 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ('status',)
 
 admin.site.register(ProductStatus)
+
+@admin.register(Tools)
+class ToolsAdmin(admin.ModelAdmin):
+    date_hierarchy = 'created_date'
+    empty_value_display = '-'
+    list_display = ('name','number','status')
+    search_fields = ('status',)
+
+admin.site.register(ToolsStatus)

@@ -49,7 +49,7 @@ class ProductStatus(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=100)
     image = models.ImageField(upload_to='product/', default='product/default.png')
-    completion = models.PositiveIntegerField(default=0)
+    completion = models.PositiveIntegerField(default=0, validators=[MinValueValidator(1), MaxValueValidator(100)])
     status = models.ForeignKey(ProductStatus, on_delete=models.PROTECT)
     budget = models.CharField(max_length=100)
     created_date = models.DateTimeField(auto_now_add=True)
@@ -72,7 +72,11 @@ class ToolsStatus(models.Model):
     
 class Tools(models.Model):
     name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='tools/', default='tools/machine.png')
+    number = models.IntegerField(default=0)
     status = models.ForeignKey(ToolsStatus , on_delete=models.PROTECT)
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
     class Meta:
         ordering = ('name',)
         verbose_name = ("ابزار")

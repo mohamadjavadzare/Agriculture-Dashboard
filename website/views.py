@@ -15,7 +15,11 @@ def notifications_view(request, *args, **kwargs):
     return render(request, 'notifications.html')
 
 def tables_view(request, *args, **kwargs):
-    return render(request, 'tables.html')
+    workers = Worker.objects.all()
+    products = Product.objects.all()
+    tools = Tools.objects.all()
+    context = {'workers': workers , 'products': products , 'tools': tools}
+    return render(request, 'tables.html', context)
 
 def weather_view(request, *args, **kwargs):
     return render(request, 'weather.html')
