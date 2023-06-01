@@ -1,10 +1,14 @@
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 
 
 class Worker(models.Model):
     name = models.CharField(max_length=90)
+    image = models.ImageField(upload_to='worker/', default='worker/default.png')
+    skill = models.CharField(max_length=100, default='کارگر ساده')
+    salary = models.CharField(max_length=100, default='350000 Toman')
     phone = models.IntegerField()
     status = models.BooleanField(default=False)
     last_employed = models.DateField(auto_now_add=True)
@@ -22,7 +26,7 @@ class Project(models.Model):
     name = models.CharField(max_length=100)
     members = models.ManyToManyField(Worker)
     budget = models.CharField(max_length=100)
-    completion = models.PositiveIntegerField(default=0)
+    completion = models.IntegerField(default=0,validators=[MinValueValidator(1), MaxValueValidator(100)])
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
     class Meta:
@@ -57,4 +61,22 @@ class Product(models.Model):
 
     def __str__(self):
         return "{} - {}".format(self.name, self.id)
+
+class ToolsStatus(models.Model):
+    name = models.CharField(max_length=100)
+    class Meta:
+        verbose_name = ("وضعیت ابزار")
+        verbose_name_plural = ("وضعیت ابزارآلات")
+    def __str__(self):
+        return "{}".format(self.name)
     
+class Tools(models.Model):
+    name = models.CharField(max_length=100)
+    status = models.ForeignKey(ToolsStatus , on_delete=models.PROTECT)
+    class Meta:
+        ordering = ('name',)
+        verbose_name = ("ابزار")
+        verbose_name_plural = ("ابزارآلات")
+
+    def __str__(self):
+        return "{} - {}".format(self.name, self.id)
