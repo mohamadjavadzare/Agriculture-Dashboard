@@ -27,3 +27,8 @@ def done_tasks():
 def available_workers():
     workers = Worker.objects.filter(status=True).count()
     return workers
+
+@register.simple_tag
+def card_number_sep(number):
+    card = ' '.join([number[i:i+4] for i in range(0, len(number), 4)])
+    return card

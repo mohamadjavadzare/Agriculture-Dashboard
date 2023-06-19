@@ -87,7 +87,7 @@ class Tools(models.Model):
     
 class Card(models.Model):
     name = models.CharField(max_length=60)
-    card_number = models.PositiveBigIntegerField(null=False, default=0)
+    card_number = models.CharField(max_length=20)
     image = models.ImageField(upload_to='card/', default='card/mastercard.png.png')
     budget = models.CharField(max_length=100)
     created_date = models.DateTimeField(auto_now_add=True)
