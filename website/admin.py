@@ -34,3 +34,9 @@ class ToolsAdmin(admin.ModelAdmin):
     search_fields = ('status',)
 
 admin.site.register(ToolsStatus)
+
+@admin.register(Card)
+class CardAdmin(admin.ModelAdmin):
+    date_hierarchy = 'created_date'
+    empty_value_display = '-'
+    list_display = ('name','budget',)

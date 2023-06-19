@@ -84,3 +84,18 @@ class Tools(models.Model):
 
     def __str__(self):
         return "{} - {}".format(self.name, self.id)
+    
+class Card(models.Model):
+    name = models.CharField(max_length=60)
+    card_number = models.PositiveBigIntegerField(null=False, default=0)
+    image = models.ImageField(upload_to='card/', default='card/mastercard.png.png')
+    budget = models.CharField(max_length=100)
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
+    class Meta:
+        ordering = ('name',)
+        verbose_name = ("کارت بانکی")
+        verbose_name_plural = ("کارت های بانکی")
+
+    def __str__(self):
+        return "{} - {}".format(self.name, self.id)

@@ -13,7 +13,7 @@ upto.is_safe = True
 
 @register.inclusion_tag('dashboard.html', name='done_taskss')
 def done_tasks():
-    done = Project.objects.filter(completion=100).count()
+    done = Project.objects.filter(completion=100)
     count_done = done.count()
     if count_done == 0:
         count_done = "zero"
@@ -21,4 +21,9 @@ def done_tasks():
     # categories = Category.objects.all()
     # for name in categories:
     #     cat_dict[name] = name
-    return {'': done, 'count_done_tasks':count_done }
+    return { 'count_done_tasks':count_done }
+
+@register.simple_tag
+def available_workers():
+    workers = Worker.objects.filter(status=True).count()
+    return workers

@@ -9,7 +9,9 @@ def dashboard_view(request, *args, **kwargs):
     return render(request, 'dashboard.html', context)
 
 def billing_view(request, *args, **kwargs):
-    return render(request, 'billing.html')
+    cards = Card.objects.all()
+    context = {'cards':cards}
+    return render(request, 'billing.html', context)
 
 def notifications_view(request, *args, **kwargs):
     return render(request, 'notifications.html')
