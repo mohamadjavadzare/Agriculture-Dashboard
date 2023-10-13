@@ -109,38 +109,37 @@
                   <p class="mb-0" style="float:right;">لطفاً برای ایجاد حساب کاربری فرم زیر را کامل کنید</p>
                   
                   <form role="form" action="{% url 'account:signup' %}" method="post">
-                    {% csrf_token %}
-                    <div class="input-group input-group-outline mb-3">
-                      <input type="text" name="first_name" class="form-control" placeholder="نام">
-                    </div>
-                    <div class="input-group input-group-outline mb-3">
-                      <input type="text" name="last_name" class="form-control" placeholder="نام خانوادگی">
-                    </div>
-                    <div class="input-group input-group-outline mb-3">
-                      <input type="text" name="username" class="form-control" placeholder="نام کاربری" required>
-                    </div>
-                    <div class="input-group input-group-outline mb-3">
-                      <input type="email" name="email" class="form-control" placeholder="ایمیل" required>
-                    </div>
-                    <div class="input-group input-group-outline mb-3">
-                      <input type="password" name="password1" class="form-control" placeholder="رمز عبور" required>
-                    </div>
-                    <div class="input-group input-group-outline mb-3">
-                      <input type="password" name="password2" class="form-control" placeholder="تکرار رمز عبور"
-                        required>
-                    </div>
-                    <!-- <div class="form-check form-check-info text-start ps-0">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
-                      <label class="form-check-label" for="flexCheckDefault">
-                        I agree the <a href="javascript:;" class="text-dark font-weight-bolder">Terms and Conditions</a>
-                      </label>
-                    </div> -->
-                    <div class="text-center">
-                      <h6>{% include 'messages.html' %}</h6>
-                      <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">ایجاد حساب
-                        کاربری </button>
-                    </div>
-                  </form>
+  {% csrf_token %}
+  
+  <div class="input-group input-group-outline mb-3">
+    <input type="text" name="first_name" class="form-control" placeholder="نام" required>
+  </div>
+  
+  <div class="input-group input-group-outline mb-3">
+    <input type="text" name="last_name" class="form-control" placeholder="نام خانوادگی" required>
+  </div>
+  
+  <div class="input-group input-group-outline mb-3">
+    <input type="text" name="username" class="form-control" placeholder="نام کاربری" required>
+  </div>
+  
+  <div class="input-group input-group-outline mb-3">
+    <input type="email" name="email" class="form-control" placeholder="ایمیل" required>
+  </div>
+  
+  <div class="input-group input-group-outline mb-3">
+    <input type="password" name="password1" class="form-control" placeholder="رمز عبور" required>
+  </div>
+  
+  <div class="input-group input-group-outline mb-3">
+    <input type="password" name="password2" class="form-control" placeholder="تکرار رمز عبور" required>
+  </div>
+
+  <div class="text-center">
+    {% include 'messages.html' %}
+    <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">ایجاد حساب کاربری</button>
+  </div>
+</form>
                 </div>
                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                   <p class="mb-2 text-sm mx-auto">

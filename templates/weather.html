@@ -30,7 +30,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link text-white active bg-gradient-primary" href="https://www.google.com/search?q=%D8%A2%D8%A8+%D9%88+%D9%87%D9%88%D8%A7+%D9%82%D9%88%DA%86%D8%A7%D9%86">
+      <a href="{% url 'website:weather' %}" class="nav-link text-white active bg-gradient-primary" >
         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
           <i class="material-icons opacity-10">cloud</i>
         </div>
@@ -118,8 +118,9 @@
             <div class="col-lg-8 col-md-11 ps-md-5 mb-5 mb-md-0">
               <div class="d-flex">
                 <div class="me-auto">
-                  <h1 class="display-1 font-weight-bold mt-n3 mb-0 text-white">28°C</h1>
-                  <h6 class="text-uppercase mb-0 ms-1 text-white">Cloudy</h6>
+                  <h6 class="text-uppercase mb-0 ms-1"  style="color: blueviolet;"">Bojnourd</h6>
+                  <h1 class="display-1 font-weight-bold mt-n3 mb-0" style="color: blueviolet;">{{weather.main.temp}}°C</h1>
+                  <h6 class="text-uppercase mb-0 ms-1"  style="color: blueviolet;"">Cloudy</h6>
                 </div>
                 <div class="ms-auto">
                   <img class="w-50 float-end mt-n6 mt-lg-n4" src="../assets/img/small-logos/icon-sun-cloud.png" alt="image sun">

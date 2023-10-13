@@ -12,6 +12,7 @@ from account.models import *
 
 def login_view(request):
     if not request.user.is_authenticated:
+        form = AuthenticationForm()
         if request.method == 'POST':
             form = AuthenticationForm(request=request, data=request.POST)
             if form.is_valid():
@@ -27,7 +28,7 @@ def login_view(request):
             else:
                 messages.add_message(request, messages.ERROR, "Make sure you entered valid username and password and try again.")
         
-        form = AuthenticationForm()
+        
         context = {'form': form ,}
         return render(request, 'account/login.html', context)
     else:
@@ -40,6 +41,7 @@ def logout_view(request):
 
 def signup_view(request):
     if not request.user.is_authenticated:
+        form = SignUpForm()
         if request.method == 'POST':
             form = SignUpForm(data=request.POST)
             if form.is_valid():
@@ -60,8 +62,6 @@ def signup_view(request):
                 messages.add_message(request, messages.ERROR, "Make sure you entered valid username, password, and confirm password then try again.")
     else: 
         return redirect('/')
-
-    form = SignUpForm()
     context = {'form': form ,}
     return render(request, 'account/signup.html', context)
 

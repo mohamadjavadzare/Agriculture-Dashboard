@@ -1,4 +1,6 @@
 from django.shortcuts import render
+import requests
+from decouple import config
 from .models import *
 # Create your views here.
 
@@ -31,4 +33,19 @@ def tables_view(request, *args, **kwargs):
 
 @login_required
 def weather_view(request, *args, **kwargs):
-    return render(request, 'weather.html')
+    api_key = config(
+        "openweather_apikey", default="18f933ce846bc85b1007e70e217290fe"
+    )
+    response = requests.get(
+        f"https://api.openweathermap.org/data/2.5/weather?lat=37.474806&lon=57.315210&appid={api_key}"
+    )
+    data = response.json()
+    # convert from kelvin to celsius with 0.01 rounding
+    data["main"]["temp"] = round(data["main"]["temp"] - 273.15, 2)
+    data["main"]["feels_like"] = round(
+        data["main"]["feels_like"] - 273.15, 2
+    )
+    data["main"]["temp_min"] = round(data["main"]["temp_min"] - 273.15, 2)
+    data["main"]["temp_max"] = round(data["main"]["temp_max"] - 273.15, 2)
+    content = {"weather": data}
+    return render(request, 'weather.html', content)
